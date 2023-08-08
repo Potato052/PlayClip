@@ -1,8 +1,18 @@
 import Image from 'next/image'
+import { getVideos } from './firebase/functions'
+import Video from '@/components/video';
 
-export default function Home() {
+export default async function Home() {
+  const videos = await getVideos();
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex ml-3">
+      {
+        videos.map((video) => (
+          <Video key={video.id} video={video} />
+        ))
+      }
     </main>
   )
 }
+
+export const revalidate = 60;

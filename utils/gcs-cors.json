@@ -5,5 +5,5 @@
         "method": ["PUT"],
         "maxAgeSeconds": 3600
     }
-  ]
+]
   

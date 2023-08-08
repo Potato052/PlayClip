@@ -6,6 +6,8 @@ const firebaseConfig = {
     apiKey: "AIzaSyAhBTXxPWq0dwzudMoPuoAG5VNVXanbm6Y",
     authDomain: "playclip.firebaseapp.com",
     projectId: "playclip",
+    storageBucket: "playclip.appspot.com",
+    messagingSenderId: "252854328896",
     appId: "1:252854328896:web:6bc31b4b69a9f76e8489a5"
   };
 
@@ -36,3 +38,5 @@ export function signOut() {
 export function onAuthStateChangedHelper(callback: (user: User | null) => void) {
   return onAuthStateChanged(auth, callback);
 }
+
+export default app;

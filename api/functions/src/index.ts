@@ -14,16 +14,6 @@ const rawVideoBucketName = "pcp-raw-videos";
 
 const videoCollectionId = "videos";
 
-export interface Video {
-  id?: string,
-  uid?: string,
-  filename?: string,
-  status?: "processing" | "processed",
-  title?: string,
-  description?: string
-}
-
-
 export const createUser = functions.auth.user().onCreate((user) => {
   const userInfo = {
     uid: user.uid,
@@ -70,3 +60,11 @@ export const getvideos = onCall({maxInstances: 1}, async () => {
     await firestore.collection(videoCollectionId).limit(10).get();
   return querySnapshot.docs.map((doc) => doc.data());
 });
+
+export const getvideometadata = onCall(
+    {maxInstances: 1},
+    async (request) => {
+      const data = await firestore.collection(videoCollectionId)
+          .where("id", "==", request.data.id).get();
+      return data.docs[0].data();
+    });

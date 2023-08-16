@@ -13,6 +13,14 @@ const storage = new Storage();
 const rawVideoBucketName = "pcp-raw-videos";
 
 const videoCollectionId = "videos";
+type IVideo = {
+  id?: string,
+  uid?: string,
+  filename?: string,
+  status?: "processing" | "processed",
+  title?: string,
+  description?: string
+}
 
 export const createUser = functions.auth.user().onCreate((user) => {
   const userInfo = {
@@ -68,3 +76,11 @@ export const getvideometadata = onCall(
           .where("id", "==", request.data.id).get();
       return data.docs[0].data();
     });
+
+export const setvideometa = onCall({maxInstances: 1}, async (request) => {
+  const data = request.data.meta as IVideo;
+  return firestore
+      .collection(videoCollectionId)
+      .doc(data.id as string)
+      .set(data, {merge: true});
+});

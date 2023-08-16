@@ -6,7 +6,11 @@ import SearchBar from "./searchbar";
 import SignIn from "./sign-in";
 import Upload from "./upload";
 import { User } from "firebase/auth";
-import { signInWithGoogle, signOut, onAuthStateChangedHelper } from "../app/firebase/firebase";
+import {
+  signInWithGoogle,
+  signOut,
+  onAuthStateChangedHelper,
+} from "../app/firebase/firebase";
 
 export default function Navbar() {
   const [user, setUser] = useState<User | null>(null);

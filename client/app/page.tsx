@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { getVideos } from './firebase/functions'
 import Video from '@/components/video';
 

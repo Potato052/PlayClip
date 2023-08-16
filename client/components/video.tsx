@@ -1,16 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
+import IVideo from "../interface/videoInterface";
 
-export interface Video {
-    id?: string,
-    uid?: string,
-    filename?: string,
-    status?: 'processing' | 'processed',
-    title?: string,
-    description?: string  
-}
-
-export default function video({video}: {video: Video}) {
+export default function video({ video }: { video: IVideo }) {
   return (
     <Link href={`/watch?v=${video.filename}`}>
       <Image
